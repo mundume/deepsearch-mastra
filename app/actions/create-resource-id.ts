@@ -2,6 +2,7 @@
 import { z } from "zod";
 import { actionClient } from ".";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const createThread = actionClient
   .metadata({ actionName: "createThread" })
@@ -18,6 +19,5 @@ export const createThread = actionClient
     console.log(thread);
 
     if (!thread) throw new Error("Could not create thread");
-
-    return { threadId: thread.id };
+    redirect(`/thread/${thread.id}`);
   });

@@ -28,8 +28,7 @@ export function Chat({
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      <main className="h-dvh grid grid-cols-[200px_1fr] gap-x-2 px-4 py-4">
-        <ThreadList />
+      <main className="h-dvh w-full ">
         <Thread />
       </main>
     </AssistantRuntimeProvider>

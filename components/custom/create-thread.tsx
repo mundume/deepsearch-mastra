@@ -6,33 +6,19 @@ import { createThread } from "@/app/actions/create-resource-id";
 
 export function CreateThreadButton() {
   const router = useRouter();
-  const res = useAction(createThread);
-
-  const handleCreateThread = async (threadId: string) => {
-    try {
-      const searchParams = new URLSearchParams(window.location.search);
-      searchParams.set("threadId", threadId);
-
-      router.push(`${window.location.pathname}?${searchParams.toString()}`);
-    } catch (error) {
-      console.error("Failed to create thread:", error);
-    }
-  };
+  const { execute, isPending } = useAction(createThread);
 
   return (
     <Button
-      onClick={async () => {
-        await res.execute({
+      variant="default"
+      onClick={() => {
+        execute({
           title: "New thread",
         });
-
-        if (res.result.data?.threadId) {
-          await handleCreateThread(res.result.data.threadId);
-        }
       }}
-      disabled={res.isPending}
+      disabled={isPending}
     >
-      {res.isPending ? "Creating..." : "Create Thread"}
+      {isPending ? "Creating..." : "Create Thread"}
     </Button>
   );
 }
