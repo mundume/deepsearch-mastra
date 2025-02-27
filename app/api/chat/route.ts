@@ -27,8 +27,8 @@ export async function POST(req: Request) {
 
   try {
     const res = await myAgent.stream(messages, {
-      // threadId,
-      // resourceId,
+      threadId,
+      resourceId,
     });
     return res.toDataStreamResponse();
   } catch (error) {

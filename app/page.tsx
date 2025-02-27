@@ -1,18 +1,37 @@
-"use client";
-import { Thread } from "@/components/assistant-ui/thread";
-import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
-import { AssistantRuntimeProvider } from "@assistant-ui/react";
-import { ThreadList } from "@/components/assistant-ui/thread-list";
+import { Chat } from "@/components/custom/chat";
+import { mastra } from "@/src/mastra";
+import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
-export default function Home() {
-  const runtime = useChatRuntime({ api: "/api/chat" });
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const threadId = (await searchParams).threadId;
+  const resourceId = (await cookies()).get("resourceId")?.value;
+  const [queryResponse, thread] = await Promise.all([
+    mastra.memory?.query({ threadId: threadId as string }),
+    mastra.memory?.getThreadById({ threadId: threadId as string }),
+  ]);
 
+  if (!thread || !resourceId) notFound();
+
+  const initialMessages = (queryResponse?.uiMessages ?? []).map((m) => ({
+    ...m,
+    content:
+      m.content === "" && !!m.toolInvocations?.length
+        ? m.toolInvocations?.map((tool) => ({ ...tool, type: "tool-call" }))
+        : m.content,
+  }));
   return (
-    <AssistantRuntimeProvider runtime={runtime}>
-      <main className="h-dvh grid grid-cols-[200px_1fr] gap-x-2 px-4 py-4">
-        <ThreadList />
-        <Thread />
-      </main>
-    </AssistantRuntimeProvider>
+    <>
+      <Chat
+        // @ts-expect-error
+        initialMessages={initialMessages}
+        resourceId={resourceId}
+        threadId={threadId as string}
+      />
+    </>
   );
 }
