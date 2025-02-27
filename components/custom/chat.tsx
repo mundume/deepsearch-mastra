@@ -29,11 +29,9 @@ export function Chat({
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      <AssistantSidebar>
-        <main className="h-dvh w-full ">
-          <Thread />
-        </main>
-      </AssistantSidebar>
+      <main className="h-dvh w-full ">
+        <Thread />
+      </main>
     </AssistantRuntimeProvider>
   );
 }
