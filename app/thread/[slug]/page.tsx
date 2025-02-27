@@ -1,4 +1,10 @@
+import { AssistantSidebar } from "@/components/assistant-ui/assistant-sidebar";
 import { Chat } from "@/components/custom/chat";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
 import { mastra } from "@/src/mastra";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
@@ -25,7 +31,7 @@ export default async function Page({
         : m.content,
   }));
   return (
-    <div className="flex items-center justify-center  max-w-3xl mx-auto">
+    <div className="max-h-screen">
       <Chat
         // @ts-expect-error
         initialMessages={initialMessages}

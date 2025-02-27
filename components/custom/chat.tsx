@@ -5,6 +5,7 @@ import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { ThreadList } from "@/components/assistant-ui/thread-list";
 import { useSearchParams } from "next/navigation";
 import { AiMessageType } from "@mastra/core";
+import { AssistantSidebar } from "../assistant-ui/assistant-sidebar";
 
 export function Chat({
   initialMessages,
@@ -28,9 +29,11 @@ export function Chat({
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      <main className="h-dvh w-full ">
-        <Thread />
-      </main>
+      <AssistantSidebar>
+        <main className="h-dvh w-full ">
+          <Thread />
+        </main>
+      </AssistantSidebar>
     </AssistantRuntimeProvider>
   );
 }
