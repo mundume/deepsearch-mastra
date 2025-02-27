@@ -1,8 +1,6 @@
 "use server";
-
 import { z } from "zod";
 import { actionClient } from ".";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 export const createThread = actionClient
@@ -17,8 +15,9 @@ export const createThread = actionClient
       title,
       resourceId,
     });
+    console.log(thread);
 
     if (!thread) throw new Error("Could not create thread");
 
-    redirect(`/chat/${thread.id}`);
+    return { threadId: thread.id };
   });
