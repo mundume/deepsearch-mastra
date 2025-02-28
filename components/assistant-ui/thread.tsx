@@ -17,7 +17,6 @@ import {
   SendHorizontalIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
