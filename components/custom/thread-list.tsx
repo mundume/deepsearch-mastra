@@ -1,6 +1,7 @@
 import { getThreads } from "@/app/actions/get-threads";
 import Link from "next/link";
 import { MessageSquare } from "lucide-react";
+import { CreateThreadButton } from "./create-thread";
 
 export const ThreadList = async () => {
   const { threadList } = await getThreads();
@@ -26,6 +27,7 @@ export const ThreadList = async () => {
           </Link>
         ))}
       </div>
+      <CreateThreadButton />
     </div>
   );
 };

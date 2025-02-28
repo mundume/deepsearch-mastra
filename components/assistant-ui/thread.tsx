@@ -26,7 +26,7 @@ import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button
 export const Thread: FC = () => {
   return (
     <ThreadPrimitive.Root
-      className="bg-background box-border h-full"
+      className="bg-background box-border h-full min-w-[42rem]"
       style={{
         ["--thread-max-width" as string]: "42rem",
       }}
