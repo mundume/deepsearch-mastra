@@ -11,14 +11,14 @@ export async function POST(req: Request) {
   if (messages.length === 1) {
     const thread = await mastra.memory?.getThreadById({ threadId });
 
-    if (!thread?.title || thread?.title === "New Thread") {
+    if (!thread?.title || thread?.title === "New thread") {
       const agent = mastra.getAgent("myAgent");
       const title = await agent.generateTitleFromUserMessage({
         message: messages.filter((m: CoreUserMessage) => m.role === "user")[0],
       });
+
       await memory.updateThread({
         id: threadId,
-
         title,
         metadata: { project: "mastra", topic: "architecture" },
       });

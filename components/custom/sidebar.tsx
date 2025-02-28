@@ -13,6 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { ThreadList } from "./thread-list";
 
 export const AppSidebar = async () => {
   return (
@@ -22,7 +23,7 @@ export const AppSidebar = async () => {
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <Link href="/">
-                <Home /> Repo Base
+                <Home /> mastra deepresearch
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -31,7 +32,9 @@ export const AppSidebar = async () => {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel></SidebarGroupLabel>
-          <SidebarMenu></SidebarMenu>
+          <SidebarMenu>
+            <ThreadList />
+          </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>Other chats</SidebarGroupLabel>
