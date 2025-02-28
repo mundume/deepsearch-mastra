@@ -25,10 +25,10 @@ export function Chat({
   });
 
   return (
-    <AssistantRuntimeProvider runtime={runtime}>
-      <div className="w-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center">
+      <AssistantRuntimeProvider runtime={runtime}>
         <Thread />
-      </div>
-    </AssistantRuntimeProvider>
+      </AssistantRuntimeProvider>
+    </div>
   );
 }

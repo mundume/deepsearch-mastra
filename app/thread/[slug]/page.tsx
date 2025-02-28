@@ -25,9 +25,9 @@ export default async function Page({
         : m.content,
   }));
   return (
-    <div className="max-h-screen w-full flex justify-center">
+    <div className="h-full w-full flex justify-center">
       <Chat
-        // @ts-expect-error
+        //  @ts-expect-error
         initialMessages={initialMessages}
         resourceId={resourceId}
         threadId={threadId as string}

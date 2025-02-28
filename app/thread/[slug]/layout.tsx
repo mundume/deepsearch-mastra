@@ -9,8 +9,12 @@ export default async function RepoLayout({
 }) {
   return (
     <SidebarProvider>
-      <AppSidebar />
-      {children}
+      <div className="flex h-screen">
+        <AppSidebar />
+        <main className="flex-1 overflow-auto flex justify-center">
+          {children}
+        </main>
+      </div>
     </SidebarProvider>
   );
 }
